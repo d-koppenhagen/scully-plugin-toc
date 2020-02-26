@@ -1,0 +1,16 @@
+# gitignore
+
+coverage/
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.nyc_output
+dist
+dist_test
+
+# npmignore
+
+src/
+tests/
+.vscode/
