@@ -1,6 +1,6 @@
 {
   "name": "scully-plugin-toc",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "this plugin for scully provides a postRenderer to generate a table of contents for the rendered route content",
   "license": "MIT",
   "repository": "https://github.com/d-koppenhagen/scully-plugin-toc",
