@@ -24,23 +24,23 @@ You can configure the plugin by using the `toc` options:
 require('./scully-plugins/toc');
 
 exports.config = {
-  projectRoot: "./src",
-  projectName: "your-project-name",
+  projectRoot: './src',
+  projectName: 'your-project-name',
   outDir: './dist/static',
   routes: {
     '/blog/:slug': {
       type: 'contentFolder',
       postRenderers: ['toc'],
       slug: {
-        folder: "./blog"
+        folder: './blog',
       },
       toc: {
         blogAreaSelector: '.blog-content',
         insertSelector: '#toc',
         level: ['h2', 'h3'],
-      }
+      },
     },
-  }
+  },
 };
 ```
 
@@ -55,8 +55,11 @@ The above example configuration will look for a HTML element with the id `toc` a
 </div>
 
 ## heading 1
+
 ### subheading 1
+
 ## heading 2
+
 ### subheading 2
 ```
 
@@ -66,11 +69,11 @@ You can configure the `scully-plugin-toc` by adding the `toc` options to your ro
 The following table will explain the options in detail.
 
 - `blogAreaSelector`: This defines the area in which the `scully-plugin-toc` will search for headings.
-If you use for example `<div class="blog"><scully-content></scully-content></div>` you should define `blogAreaSelector: ".blog"` to generate the TOC only from the blog content and not from the whole webpage.
-If the parameter is not set, the plugin will search for heading at the whole page.
+  If you use for example `<div class="blog"><scully-content></scully-content></div>` you should define `blogAreaSelector: ".blog"` to generate the TOC only from the blog content and not from the whole webpage.
+  If the parameter is not set, the plugin will search for heading at the whole page.
 - `insertSelector`: The selector defines the point where the `scully-plugin-toc` will inset the generated TOC.
-By default the plugin will use `#toc` as selector.
-It will skip the TOC generation when there is no selector match.
-In fact to insert the TOC in a blog post, you should at least add a `<div id="toc"></div>` in your blog post and this is the place where the TOC will be inserted.
+  By default the plugin will use `#toc` as selector.
+  It will skip the TOC generation when there is no selector match.
+  In fact to insert the TOC in a blog post, you should at least add a `<div id="toc"></div>` in your blog post and this is the place where the TOC will be inserted.
 - `level`: This option defines the heading levels to include in the TOC. By default the value `level: ['h2', 'h3']` is used.
-Only valid HTML headings are supported (`h1`, `h2`, `h3`, `h4`, `h5` and `h6`).
+  Only valid HTML headings are supported (`h1`, `h2`, `h3`, `h4`, `h5` and `h6`).

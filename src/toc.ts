@@ -4,7 +4,7 @@ import { JSDOM } from 'jsdom';
 
 export const headingLevel = (tag: string): number | null => {
   const match = tag.match(/(?!h)[123456]/g);
-  return match && match.length ? Number(match[0]): null;
+  return match && match.length ? Number(match[0]) : null;
 };
 
 export const tocPlugin = async (html: string, routeData: RouteData) => {
@@ -25,7 +25,7 @@ export const tocPlugin = async (html: string, routeData: RouteData) => {
         tocInsertPointSelector = tocConfig.insertSelector;
       } else {
         logError(
-          `Option "insertSelector" for "toc" must be a string (e.g. "#toc").`
+          `Option "insertSelector" for "toc" must be a string (e.g. "#toc").`,
         );
       }
     }
@@ -37,7 +37,7 @@ export const tocPlugin = async (html: string, routeData: RouteData) => {
     // in case <div id="toc"></div> is not on the site
     if (!insertPoint) {
       logWarn(
-        `Insert point with selector ${tocInsertPointSelector} not found. Skipping toc generation for route ${route}.`
+        `Insert point with selector ${tocInsertPointSelector} not found. Skipping toc generation for route ${route}.`,
       );
       return html;
     }
@@ -48,14 +48,14 @@ export const tocPlugin = async (html: string, routeData: RouteData) => {
     let levels = ['h2', 'h3'];
     if (!tocConfig.level) {
       logWarn(
-        `Option "level" for "toc" not set, using default: "['h2', 'h3']".`
+        `Option "level" for "toc" not set, using default: "['h2', 'h3']".`,
       );
     } else {
       if (Array.isArray(tocConfig.level)) {
         levels = tocConfig.level;
       } else {
         logError(
-          `Option "level" for "toc" must be an array containing headings to list (e.g.: "['h2', 'h3']".`
+          `Option "level" for "toc" must be an array containing headings to list (e.g.: "['h2', 'h3']".`,
         );
       }
     }
@@ -65,12 +65,14 @@ export const tocPlugin = async (html: string, routeData: RouteData) => {
       const lowerCased = level.toLowerCase();
       if (possibleValues.indexOf(lowerCased) === -1) {
         logWarn(
-          `Level ${level} is not valid. It should be one of ${JSON.stringify(
-            possibleValues
-          )}.`
+          `Level "${level}" is not valid. It should be one of ${JSON.stringify(
+            possibleValues,
+          )}.`,
         );
       } else {
-        selector += tocConfig.blogAreaSelector ? `${tocConfig.blogAreaSelector}>${lowerCased},` : `${lowerCased},`;
+        selector += tocConfig.blogAreaSelector
+          ? `${tocConfig.blogAreaSelector}>${lowerCased},`
+          : `${lowerCased},`;
       }
     });
     // remove leading and trailing comma
@@ -107,9 +109,7 @@ export const tocPlugin = async (html: string, routeData: RouteData) => {
      */
     return dom.serialize();
   } catch (e) {
-    logWarn(
-      `error in tocPlugin, didn't parse for route '${yellow(route)}'`
-    );
+    logWarn(`error in tocPlugin, didn't parse for route '${yellow(route)}'`);
   }
   // in case of failure return unchanged HTML to keep flow going
   return html;
