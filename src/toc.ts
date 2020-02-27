@@ -2,21 +2,27 @@ import { RouteData } from '@scullyio/scully/routerPlugins/addOptionalRoutesPlugi
 import { logError, logWarn, yellow } from '@scullyio/scully/utils/log';
 import { JSDOM } from 'jsdom';
 
-export const headingLevel = (tag: string): number => Number(tag[1]);
-export const tocPlugin = async (html: string, route: RouteData) => {
+export const headingLevel = (tag: string): number | null => {
+  const match = tag.match(/(?!h)[123456]/g);
+  return match && match.length ? Number(match[0]): null;
+};
+
+export const tocPlugin = async (html: string, routeData: RouteData) => {
+  const route = routeData.route;
   try {
     const dom = new JSDOM(html);
     const { window } = dom;
+    const tocConfig = routeData.config.toc;
 
     /**
      * define insert point
      */
     let tocInsertPointSelector = '#toc';
-    if (!route.config.toc.insertSelector) {
+    if (!tocConfig.insertSelector) {
       logWarn(`No "insertSelector" for "toc" provided, using default: "#id".`);
     } else {
-      if (typeof route.config.toc.insertSelector === 'string') {
-        tocInsertPointSelector = route.config.toc.insertSelector;
+      if (typeof tocConfig.insertSelector === 'string') {
+        tocInsertPointSelector = tocConfig.insertSelector;
       } else {
         logError(
           `Option "insertSelector" for "toc" must be a string (e.g. "#toc").`
@@ -31,7 +37,7 @@ export const tocPlugin = async (html: string, route: RouteData) => {
     // in case <div id="toc"></div> is not on the site
     if (!insertPoint) {
       logWarn(
-        `Insert point with selector ${tocInsertPointSelector} not found. Skipping toc generation for route ${route.route}.`
+        `Insert point with selector ${tocInsertPointSelector} not found. Skipping toc generation for route ${route}.`
       );
       return html;
     }
@@ -40,13 +46,13 @@ export const tocPlugin = async (html: string, route: RouteData) => {
      * get headings for toc generation
      */
     let levels = ['h2', 'h3'];
-    if (!route.config.toc.level) {
+    if (!tocConfig.level) {
       logWarn(
         `Option "level" for "toc" not set, using default: "['h2', 'h3']".`
       );
     } else {
-      if (Array.isArray(route.config.toc.level)) {
-        levels = route.config.toc.level;
+      if (Array.isArray(tocConfig.level)) {
+        levels = tocConfig.level;
       } else {
         logError(
           `Option "level" for "toc" must be an array containing headings to list (e.g.: "['h2', 'h3']".`
@@ -64,7 +70,7 @@ export const tocPlugin = async (html: string, route: RouteData) => {
           )}.`
         );
       } else {
-        selector += `${route.config.toc.blogAreaSelector}>${lowerCased},`;
+        selector += tocConfig.blogAreaSelector ? `${tocConfig.blogAreaSelector}>${lowerCased},` : `${lowerCased},`;
       }
     });
     // remove leading and trailing comma
@@ -74,15 +80,15 @@ export const tocPlugin = async (html: string, route: RouteData) => {
     /**
      * build nested ul, li list
      */
-    let previousTag: number;
+    let previousTag: number | null;
     let toc = '';
     headers.forEach(c => {
       const level = headingLevel(c.tagName);
-      const baseLiEl = `<li><a href="${route.route}#${c.id}">${c.textContent}</a></li>`;
-      if (previousTag && level > previousTag) {
+      const baseLiEl = `<li><a href="${route}#${c.id}">${c.textContent}</a></li>`;
+      if (previousTag && level && level > previousTag) {
         toc += '<ul style="margin-bottom: 0px">';
       }
-      if (previousTag && level < previousTag) {
+      if (previousTag && level && level < previousTag) {
         toc += '</ul>';
       }
       toc += baseLiEl;
@@ -90,33 +96,7 @@ export const tocPlugin = async (html: string, route: RouteData) => {
     });
 
     /**
-     * append toc title as child
-     */
-    let tocTitle = '';
-    if (
-      route.config.toc.heading.title &&
-      typeof route.config.toc.heading.title === 'string'
-    ) {
-      tocTitle = route.config.toc.heading.title;
-    } else {
-      try {
-        tocTitle =
-          route.config.toc.heading.title[route.data.language.toLowerCase()];
-      } catch (error) {
-        tocTitle =
-          route.config.toc.heading.title[
-            route.config.toc.heading.defaultLang
-          ] || '';
-      }
-      const tocHeading = window.document.createElement(
-        route.config.toc.heading.tag || 'h2'
-      );
-      tocHeading.innerHTML = tocTitle;
-      insertPoint.appendChild(tocHeading);
-    }
-
-    /**
-     * append toc itself as child
+     * append toc as child
      */
     const list = window.document.createElement('ul');
     list.innerHTML = toc;
@@ -128,7 +108,7 @@ export const tocPlugin = async (html: string, route: RouteData) => {
     return dom.serialize();
   } catch (e) {
     logWarn(
-      `error in tocPlugin, didn't parse for route '${yellow(route.route)}'`
+      `error in tocPlugin, didn't parse for route '${yellow(route)}'`
     );
   }
   // in case of failure return unchanged HTML to keep flow going

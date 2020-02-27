@@ -18,7 +18,7 @@ This plugin for [Scully](https://github.com/scullyio/scully) provides a `postRen
 ## Usage
 
 To use the plugin you should import it in your scully configuration file (`scully.<project-name>.config.js`) and set it as a `postRenderer`.
-You can also specify the `toc` options object to customize the generated table of contents.
+You can also specify the `toc` options object to customize the generated table of contents:
 
 ```js
 require('./scully-plugins/toc');
@@ -58,7 +58,7 @@ The above example configuration will look for an HTML element with the id `toc` 
 ```md
 # my blog post
 
-<div id="toc"></div>
+<div id="toc"><h2>Table of contents</h2></div>
 
 ## heading 1
 ### subheading 1
@@ -66,6 +66,15 @@ The above example configuration will look for an HTML element with the id `toc` 
 ### subheading 2
 ```
 
+## Options
 
+You can configure the `toc` plugin by adding the `toc` options to your route configuration.
+The following table will explain the options in detail.
 
-
+- `blogAreaSelector`: This defines the area in which the `toc` plugin will search for headings.
+If you use for example `<div class="blog"><scully-content></scully-content></div>` you should define `blogAreaSelector: ".blog"` to generate the TOC only from the blog content and not from the whole page.
+If the parameter is not set, the plugin will search for all headings.
+- `insertSelector`: The selector defines the point where the `toc` plugin will inset the generated TOC.
+By default the plugin will use `#toc`. It will skip the TOC generation when there is no selector match.
+In fact to insert the TOC in a blog post, you should at least add a `<div id="toc"></div>` in your blog post and this is the place where the TOC will be inserted.
+- `level`: This options defines the heading levels to include in the TOC. By default the value `level: ['h2', 'h3']` is used. Only valid HTML headings are supported (`h1`, `h2`, `h3`, `h4`, `h5`, `h6`).
