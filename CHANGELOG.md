@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.3](https://github.com/d-koppenhagen/scully-plugin-toc/compare/v0.0.2...v0.0.3) (2020-02-27)
+
+
+### Features
+
+* remove unneeded heading option ([6c7b49a](https://github.com/d-koppenhagen/scully-plugin-toc/commit/6c7b49a79d8830e4d90d301882fc7d99d2b0887f))
+
 ### [0.0.2](https://github.com/d-koppenhagen/scully-plugin-toc/compare/v0.0.1...v0.0.2) (2020-02-26)
 
 ### 0.0.1 (2020-02-26)
