@@ -26,7 +26,7 @@
   "types": "dist/index",
   "scripts": {
     "clean": "rimraf dist && rimraf coverage",
-    "format": "prettier --write \"{src,tests}/**/*.ts\" --single-quote --trailing-comma es5",
+    "format": "prettier --write \"{src,tests}/**/*.ts\"",
     "lint": "tslint --force --format verbose \"src/**/*.ts\"",
     "prepublishOnly": "npm run build",
     "prebuild": "npm run clean && npm run format && npm run lint && echo Using TypeScript && tsc --version",
