@@ -38,7 +38,7 @@
     "release": "standard-version"
   },
   "dependencies": {
-    "@scullyio/scully": "^0.0.75",
+    "@scullyio/scully": "^0.0.78",
     "jsdom": "^16.2.0"
   },
   "devDependencies": {
