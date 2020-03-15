@@ -1,13 +1,27 @@
-import { RouteData } from '@scullyio/scully/routerPlugins/addOptionalRoutesPlugin';
+import { HandledRoute } from '@scullyio/scully/routerPlugins/addOptionalRoutesPlugin';
 import { logError, logWarn, yellow } from '@scullyio/scully/utils/log';
 import { JSDOM } from 'jsdom';
+
+export type Level = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+
+export interface TocOptions {
+  blogAreaSelector: string;
+  insertSelector: string;
+  level: Level[];
+}
+
+export interface TocHandledRoute extends HandledRoute {
+  config: {
+    toc: TocOptions;
+  };
+}
 
 export const headingLevel = (tag: string): number | null => {
   const match = tag.match(/(?!h)[123456]/g);
   return match && match.length ? Number(match[0]) : null;
 };
 
-export const tocPlugin = async (html: string, routeData: RouteData) => {
+export const tocPlugin = async (html: string, routeData: TocHandledRoute) => {
   const route = routeData.route;
   try {
     const dom = new JSDOM(html);
