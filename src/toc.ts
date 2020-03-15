@@ -1,20 +1,6 @@
-import { HandledRoute } from '@scullyio/scully/routerPlugins/addOptionalRoutesPlugin';
-import { logError, logWarn, yellow } from '@scullyio/scully/utils/log';
+import { logWarn, yellow } from '@scullyio/scully/utils/log';
 import { JSDOM } from 'jsdom';
-
-export type Level = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
-
-export interface TocOptions {
-  blogAreaSelector: string;
-  insertSelector: string;
-  level: Level[];
-}
-
-export interface TocHandledRoute extends HandledRoute {
-  config: {
-    toc: TocOptions;
-  };
-}
+import { TocHandledRoute, Level } from './interfaces';
 
 export const headingLevel = (tag: string): number | null => {
   const match = tag.match(/(?!h)[123456]/g);
@@ -35,13 +21,7 @@ export const tocPlugin = async (html: string, routeData: TocHandledRoute) => {
     if (!tocConfig.insertSelector) {
       logWarn(`No "insertSelector" for "toc" provided, using default: "#id".`);
     } else {
-      if (typeof tocConfig.insertSelector === 'string') {
-        tocInsertPointSelector = tocConfig.insertSelector;
-      } else {
-        logError(
-          `Option "insertSelector" for "toc" must be a string (e.g. "#toc").`,
-        );
-      }
+      tocInsertPointSelector = tocConfig.insertSelector;
     }
 
     /**
@@ -59,19 +39,13 @@ export const tocPlugin = async (html: string, routeData: TocHandledRoute) => {
     /**
      * get headings for toc generation
      */
-    let levels = ['h2', 'h3'];
+    let levels: Level[] = ['h2', 'h3'];
     if (!tocConfig.level) {
       logWarn(
         `Option "level" for "toc" not set, using default: "['h2', 'h3']".`,
       );
     } else {
-      if (Array.isArray(tocConfig.level)) {
-        levels = tocConfig.level;
-      } else {
-        logError(
-          `Option "level" for "toc" must be an array containing headings to list (e.g.: "['h2', 'h3']".`,
-        );
-      }
+      levels = tocConfig.level;
     }
     const possibleValues = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'];
     let selector = '';
