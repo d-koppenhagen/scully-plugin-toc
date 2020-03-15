@@ -21,7 +21,13 @@ To use the plugin you should import it in your scully configuration file (`scull
 You can configure the plugin by using the `toc` options:
 
 ```js
-require('./scully-plugins/toc');
+const { TOC } = require('./scully-plugins/toc');
+
+const tocOptions = {
+  blogAreaSelector: '.blog-content',
+  insertSelector: '#toc',
+  level: ['h2', 'h3'],
+},;
 
 exports.config = {
   projectRoot: './src',
@@ -30,15 +36,11 @@ exports.config = {
   routes: {
     '/blog/:slug': {
       type: 'contentFolder',
-      postRenderers: ['toc'],
+      postRenderers: [TOC],
       slug: {
         folder: './blog',
       },
-      toc: {
-        blogAreaSelector: '.blog-content',
-        insertSelector: '#toc',
-        level: ['h2', 'h3'],
-      },
+      toc: tocOptions
     },
   },
 };
