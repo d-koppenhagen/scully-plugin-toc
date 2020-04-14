@@ -7,7 +7,7 @@ export const headingLevel = (tag: string): number | null => {
   return match && match.length ? Number(match[0]) : null;
 };
 
-export const tocPlugin = async (html: string, routeData: TocHandledRoute) => {
+export function tocPlugin(html: string, routeData: TocHandledRoute) {
   const route = routeData.route;
   try {
     const dom = new JSDOM(html);
@@ -101,4 +101,4 @@ export const tocPlugin = async (html: string, routeData: TocHandledRoute) => {
   }
   // in case of failure return unchanged HTML to keep flow going
   return html;
-};
+}

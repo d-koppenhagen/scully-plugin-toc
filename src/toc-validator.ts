@@ -1,6 +1,6 @@
 import { TocHandledRoute } from './interfaces';
 
-export const validator = async (options: TocHandledRoute) => {
+export function validator(options: TocHandledRoute) {
   const tocConfig = options.config.toc;
   const errors: string[] = [];
 
@@ -23,4 +23,4 @@ export const validator = async (options: TocHandledRoute) => {
   }
 
   return errors;
-};
+}

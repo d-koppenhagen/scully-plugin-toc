@@ -5,3 +5,5 @@ import { validator } from './toc-validator';
 export const TOC = 'toc';
 
 registerPlugin('render', TOC, tocPlugin, validator);
+
+module.exports.tocPlugin = tocPlugin;
