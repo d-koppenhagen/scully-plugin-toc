@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.8](https://github.com/d-koppenhagen/scully-plugin-toc/compare/v0.0.7...v0.0.8) (2020-04-14)
+
+
+### Bug Fixes
+
+* correcttly export module ([2f80662](https://github.com/d-koppenhagen/scully-plugin-toc/commit/2f80662b9ac6840963bf381e43692476e729694f))
+
 ### [0.0.7](https://github.com/d-koppenhagen/scully-plugin-toc/compare/v0.0.6...v0.0.7) (2020-03-15)
 
 
