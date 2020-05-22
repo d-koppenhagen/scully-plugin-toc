@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.0.0-beta.0](https://github.com/d-koppenhagen/scully-plugin-toc/compare/v0.0.8...v1.0.0-beta.0) (2020-05-22)
+
+
+### Features
+
+* update to new `setPluginConfig` method and scully structure ([f99428a](https://github.com/d-koppenhagen/scully-plugin-toc/commit/f99428ade5de3b368d6f2ffaa80a37e44912b2d3))
+
 ### [0.0.8](https://github.com/d-koppenhagen/scully-plugin-toc/compare/v0.0.7...v0.0.8) (2020-04-14)
 
 
