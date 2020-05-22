@@ -20,7 +20,7 @@ This plugin for [Scully](https://github.com/scullyio/scully) provides a `postRen
 To install this library with `npm` run:
 
 ```sh
-npm i @gammastream/scully-plugin-toc --save-dev
+npm i scully-plugin-toc --save-dev
 ```
 
 ## Usage
