@@ -1,9 +1,11 @@
 import { registerPlugin } from '@scullyio/scully';
+
 import { tocPlugin } from './toc';
 import { validator } from './toc-validator';
 
-export const TOC = 'toc';
+import { TocPlugin } from './constants';
+export { TocConfig } from './interfaces';
 
-registerPlugin('render', TOC, tocPlugin, validator);
+registerPlugin('render', TocPlugin, tocPlugin, validator);
 
-module.exports.tocPlugin = tocPlugin;
+export const getTocPlugin = () => TocPlugin;

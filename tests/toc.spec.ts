@@ -1,5 +1,7 @@
 import { headingLevel, tocPlugin } from '../src/toc';
-import { TocHandledRoute, Level } from '../src/interfaces';
+import { Level, TocConfig } from '../src/interfaces';
+import { HandledRoute, setPluginConfig } from '@scullyio/scully';
+import { getTocPlugin } from '../src/index';
 
 describe('headingLevel', () => {
   test('should return the heading level number', () => {
@@ -18,7 +20,9 @@ describe('headingLevel', () => {
 
 describe('tocPlugin', () => {
   let defaultValidHtml: string;
-  let defaultRouteDataConfig: TocHandledRoute;
+  let defaultRouteDataConfig: HandledRoute;
+  let tocConfig: TocConfig;
+  let TocPlugin: any;
 
   const resultStart = `<html><head></head><body>
   <h1>Before Blog Main Content</h1>
@@ -68,14 +72,14 @@ describe('tocPlugin', () => {
       data: {
         language: 'de',
       },
-      config: {
-        toc: {
-          blogAreaSelector: '.blog',
-          insertSelector: '#toc',
-          level: ['h2', 'h3'],
-        },
-      },
     };
+
+    tocConfig = {
+      blogAreaSelector: '.blog',
+      insertSelector: '#toc',
+      level: ['h2', 'h3'],
+    };
+    TocPlugin = getTocPlugin();
   });
   test('should return the HTML including TOC by respecting the configured options', async () => {
     const html = await tocPlugin(defaultValidHtml, defaultRouteDataConfig);
@@ -85,38 +89,42 @@ describe('tocPlugin', () => {
   });
 
   test('should return the HTML including TOC by using default "blogAreaSelector"', async () => {
-    const options = { ...defaultRouteDataConfig };
-    options.config.toc.blogAreaSelector = '';
-    options.config.toc.level = ['h1', 'h2', 'h3'];
-    const html = await tocPlugin(defaultValidHtml, options);
+    const options = { ...tocConfig };
+    options.blogAreaSelector = '';
+    options.level = ['h1', 'h2', 'h3'];
+    setPluginConfig(TocPlugin, options);
+    const html = await tocPlugin(defaultValidHtml, defaultRouteDataConfig);
     expect(html).toEqual(
       `${resultStart}<div id="toc"><ul><li><a href="/foo/bar#">Before Blog Main Content</a></li><li><a href="/foo/bar#h1-1">H1-1</a></li><ul style="margin-bottom: 0px"><li><a href="/foo/bar#h2-1">H2-1</a></li><ul style="margin-bottom: 0px"><li><a href="/foo/bar#h3-1">H3-1</a></li></ul><li><a href="/foo/bar#h1-2">H1-2</a></li><ul style="margin-bottom: 0px"><li><a href="/foo/bar#h2-2">H2-2</a></li></ul></ul></ul></div>${resultEnd}`,
     );
   });
 
   test('should return the HTML including TOC by specify level option', async () => {
-    const options = { ...defaultRouteDataConfig };
-    options.config.toc.level = ['h4', 'h5', 'h6', 'invalid' as Level];
-    const html = await tocPlugin(defaultValidHtml, options);
+    const options = { ...tocConfig };
+    options.level = ['h4', 'h5', 'h6', 'invalid' as Level];
+    setPluginConfig(TocPlugin, options);
+    const html = await tocPlugin(defaultValidHtml, defaultRouteDataConfig);
     expect(html).toEqual(
       `${resultStart}<div id="toc"><ul><li><a href="/foo/bar#h4-1">H4-1</a></li><ul style="margin-bottom: 0px"><li><a href="/foo/bar#h5-1">H5-1</a></li><ul style="margin-bottom: 0px"><li><a href="/foo/bar#h6-1">H6-1</a></li></ul><li><a href="/foo/bar#h4-2">H4-2</a></li></ul></ul></div>${resultEnd}`,
     );
   });
 
   test('should insert TOC into element with id "toc" by default', async () => {
-    const options = { ...defaultRouteDataConfig };
-    options.config.toc.insertSelector = '';
-    const html = await tocPlugin(defaultValidHtml, options);
+    const options = { ...tocConfig };
+    options.insertSelector = '';
+    setPluginConfig(TocPlugin, options);
+    const html = await tocPlugin(defaultValidHtml, defaultRouteDataConfig);
     expect(html).toEqual(
       `${resultStart}<div id="toc"><ul><li><a href="/foo/bar#h2-1">H2-1</a></li><ul style="margin-bottom: 0px"><li><a href="/foo/bar#h3-1">H3-1</a></li></ul><li><a href="/foo/bar#h2-2">H2-2</a></li></ul></div>${resultEnd}`,
     );
   });
 
   test('should insert TOC into specific element', async () => {
-    const options = { ...defaultRouteDataConfig };
-    options.config.toc.insertSelector = '.foo';
+    const options = { ...tocConfig };
+    options.insertSelector = '.foo';
     const inputHtml = defaultValidHtml.replace('id="toc"', 'class="foo"');
-    const html = await tocPlugin(inputHtml, options);
+    setPluginConfig(TocPlugin, options);
+    const html = await tocPlugin(inputHtml, defaultRouteDataConfig);
     expect(html).toEqual(
       `${resultStart}<div class="foo"><ul><li><a href="/foo/bar#h2-1">H2-1</a></li><ul style="margin-bottom: 0px"><li><a href="/foo/bar#h3-1">H3-1</a></li></ul><li><a href="/foo/bar#h2-2">H2-2</a></li></ul></div>${resultEnd}`,
     );

@@ -15,32 +15,42 @@
 
 This plugin for [Scully](https://github.com/scullyio/scully) provides a `postRenderer` to generate a _table of contents_ (_TOC_) for the rendered route content.
 
+## Installation
+
+To install this library with `npm` run:
+
+```sh
+npm i @gammastream/scully-plugin-toc --save-dev
+```
+
 ## Usage
 
-To use the plugin you should import it in your scully configuration file (`scully.<project-name>.config.js`) and define it as a `postRenderer` for a route definition.
+To use the plugin you should import it in your scully configuration file (`scully.<project-name>.config.ts`) and define it as a `postRenderer` for a route definition.
 You can configure the plugin by using the `toc` options:
 
 ```js
-const { TOC } = require('./scully-plugins/toc');
+import { ScullyConfig, setPluginConfig } from '@scullyio/scully';
+import { getTocPlugin, TocConfig } = from './scully-plugins/toc';
 
-const tocOptions = {
+const tocOptions: TocConfig = {
   blogAreaSelector: '.blog-content',
   insertSelector: '#toc',
   level: ['h2', 'h3'],
-},;
+};
+const TocPlugin = getTocPlugin();
+setPluginConfig(TocPlugin, tocOptions);
 
-exports.config = {
+export const config: ScullyConfig = {
   projectRoot: './src',
   projectName: 'your-project-name',
   outDir: './dist/static',
   routes: {
     '/blog/:slug': {
       type: 'contentFolder',
-      postRenderers: [TOC],
+      postRenderers: ['toc'],
       slug: {
         folder: './blog',
       },
-      toc: tocOptions
     },
   },
 };

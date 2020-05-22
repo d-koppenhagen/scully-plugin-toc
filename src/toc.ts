@@ -1,18 +1,22 @@
-import { logWarn, yellow } from '@scullyio/scully/utils/log';
+import { HandledRoute, logWarn, yellow, log } from '@scullyio/scully';
+import { getPluginConfig } from '@scullyio/scully/lib/pluginManagement/pluginConfig';
 import { JSDOM } from 'jsdom';
-import { TocHandledRoute, Level } from './interfaces';
+
+import { Level, TocConfig } from './interfaces';
+import { TocPlugin } from './constants';
 
 export const headingLevel = (tag: string): number | null => {
   const match = tag.match(/(?!h)[123456]/g);
   return match && match.length ? Number(match[0]) : null;
 };
 
-export function tocPlugin(html: string, routeData: TocHandledRoute) {
+export const tocPlugin = async (html: string, routeData: HandledRoute) => {
+  const tocConfig = getPluginConfig<TocConfig>(TocPlugin);
+
   const route = routeData.route;
   try {
     const dom = new JSDOM(html);
     const { window } = dom;
-    const tocConfig = routeData.config.toc;
 
     /**
      * define insert point
@@ -49,7 +53,7 @@ export function tocPlugin(html: string, routeData: TocHandledRoute) {
     }
     const possibleValues = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'];
     let selector = '';
-    levels.forEach(level => {
+    levels.forEach((level) => {
       const lowerCased = level.toLowerCase();
       if (possibleValues.indexOf(lowerCased) === -1) {
         logWarn(
@@ -72,7 +76,7 @@ export function tocPlugin(html: string, routeData: TocHandledRoute) {
      */
     let previousTag: number | null;
     let toc = '';
-    headers.forEach(c => {
+    headers.forEach((c: any) => {
       const level = headingLevel(c.tagName);
       const baseLiEl = `<li><a href="${route}#${c.id}">${c.textContent}</a></li>`;
       if (previousTag && level && level > previousTag) {
@@ -99,6 +103,7 @@ export function tocPlugin(html: string, routeData: TocHandledRoute) {
   } catch (e) {
     logWarn(`error in tocPlugin, didn't parse for route '${yellow(route)}'`);
   }
+  log('Finished sitemap generation by scully-plugin-toc');
   // in case of failure return unchanged HTML to keep flow going
-  return html;
-}
+  return Promise.resolve(html);
+};

@@ -1,7 +1,10 @@
-import { TocHandledRoute } from './interfaces';
+import { getPluginConfig } from '@scullyio/scully';
 
-export function validator(options: TocHandledRoute) {
-  const tocConfig = options.config.toc;
+import { TocPlugin } from './constants';
+import { TocConfig } from './interfaces';
+
+export const validator = async (/* conf */) => {
+  const tocConfig = getPluginConfig<TocConfig>(TocPlugin);
   const errors: string[] = [];
 
   if (!tocConfig.insertSelector.length) {
@@ -23,4 +26,4 @@ export function validator(options: TocHandledRoute) {
   }
 
   return errors;
-}
+};
