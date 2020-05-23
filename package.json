@@ -5,17 +5,18 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build scully-plugin-toc --prod",
-    "test": "ng test scully-plugin-toc",
+    "test": "jest",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "format": "prettier --write \"{src,projects}/**/*.ts\"",
+    "format": "prettier --write \"projects/**/*.ts\"",
     "prebuild": "npm run format && npm run lint && echo Using TypeScript && tsc --version",
     "postbuild": "npm run copy && npm run addVersion",
     "copy": "copyfiles CHANGELOG.md README.md LICENSE dist/scully-plugin-toc",
     "addVersion": "cd dist/scully-plugin-toc && npm version -allow-same-version \"$(node -e \"console.log(require('../../package.json').version)\")\"",
     "release": "standard-version && npm run build",
     "release:beta": "standard-version --prerelease && npm run build",
-    "publish": "cd dist/scully-plugin-toc && npm publish"
+    "publish": "cd dist/scully-plugin-toc && npm publish",
+    "test:watch": "jest --watch"
   },
   "private": true,
   "dependencies": {
@@ -27,6 +28,7 @@
     "@angular/platform-browser": "~9.1.9",
     "@angular/platform-browser-dynamic": "~9.1.9",
     "@angular/router": "~9.1.9",
+    "@briebug/jest-schematic": "^2.1.1",
     "@scullyio/scully": "^0.0.92",
     "jsdom": "^16.2.2",
     "rxjs": "~6.5.4",
@@ -43,6 +45,7 @@
     "@commitlint/config-conventional": "^8.3.4",
     "@types/jasmine": "~3.5.0",
     "@types/jasminewd2": "~2.0.3",
+    "@types/jest": "25.2.3",
     "@types/node": "^12.11.1",
     "codelyzer": "^5.1.2",
     "commitizen": "^4.1.2",
@@ -51,14 +54,10 @@
     "husky": "^4.2.5",
     "jasmine-core": "~3.5.0",
     "jasmine-spec-reporter": "~4.2.1",
-    "karma": "~5.0.0",
-    "karma-chrome-launcher": "~3.1.0",
-    "karma-coverage-istanbul-reporter": "~2.1.0",
-    "karma-jasmine": "~3.0.1",
-    "karma-jasmine-html-reporter": "^1.4.2",
+    "jest": "26.0.1",
+    "jest-preset-angular": "8.2.0",
     "ng-packagr": "^9.1.5",
     "prettier": "^2.0.5",
-    "protractor": "~7.0.0",
     "replace": "^1.2.0",
     "rimraf": "^3.0.2",
     "standard-version": "^8.0.0",
@@ -75,6 +74,29 @@
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "jest": {
+    "preset": "jest-preset-angular",
+    "roots": [
+      "projects"
+    ],
+    "transform": {
+      "^.+\\.(ts|js|html)$": "ts-jest"
+    },
+    "setupFilesAfterEnv": [
+      "<rootDir>/projects/setup-jest.ts"
+    ],
+    "moduleNameMapper": {},
+    "globals": {
+      "ts-jest": {
+        "tsConfig": "<rootDir>/projects/scully-plugin-toc/tsconfig.spec.json",
+        "stringifyContentPathRegex": "\\.html$",
+        "astTransformers": [
+          "jest-preset-angular/build/InlineFilesTransformer",
+          "jest-preset-angular/build/StripStylesTransformer"
+        ]
+      }
     }
   }
 }

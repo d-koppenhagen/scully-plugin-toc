@@ -17,7 +17,8 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - run: npm install
-      - run: npm run build --if-present
+      - run: cd projects/scully-plugin-toc && npm install && cd ../../
+      - run: npm run build
       - run: npm test
         env:
           CI: true

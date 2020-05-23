@@ -21,14 +21,6 @@
             }
           }
         },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "projects/scully-plugin-toc/src/test.ts",
-            "tsConfig": "projects/scully-plugin-toc/tsconfig.spec.json",
-            "karmaConfig": "projects/scully-plugin-toc/karma.conf.js"
-          }
-        },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
@@ -36,13 +28,12 @@
               "projects/scully-plugin-toc/tsconfig.lib.json",
               "projects/scully-plugin-toc/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         }
       }
-    }},
+    }
+  },
   "cli": {
     "analytics": "7e156ccc-192b-4fc7-816c-a5e4d7e3d910"
   },
