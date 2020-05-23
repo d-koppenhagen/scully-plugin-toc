@@ -1,10 +1,9 @@
-/*
-import { validator } from '../src/toc-validator';
-import { TocConfig } from '../src/interfaces';
-import { getTocPlugin } from '../src/index';
+import { validator } from './validator';
+import { TocConfig } from './interfaces';
+import { getTocPlugin } from './index';
 import { setPluginConfig } from '@scullyio/scully';
 
-xdescribe('validator', () => {
+describe('validator', () => {
   let options: TocConfig;
   let TocPlugin: any;
 
@@ -16,37 +15,36 @@ xdescribe('validator', () => {
       level: ['h2', 'h3'],
     };
   });
-  test('should return an empty array when config is valid', async () => {
+  it('should return an empty array when config is valid', async () => {
     setPluginConfig(TocPlugin, options);
     const validationResult = await validator();
-    expect(validationResult).toHaveLength(0);
+    expect(validationResult.length).toEqual(0);
   });
 
-  test('should return an error when "insertSelector" is en empty string', async () => {
+  it('should return an error when "insertSelector" is en empty string', async () => {
     setPluginConfig(TocPlugin, { ...options, insertSelector: '' });
     const validationResult = await validator();
-    expect(validationResult).toHaveLength(1);
+    expect(validationResult.length).toEqual(1);
     expect(validationResult[0]).toEqual(
       'Option "insertSelector" for "toc" must be a valid string (e.g. "#toc").',
     );
   });
 
-  test('should return an error when "blogAreaSelector" is en empty string', async () => {
+  it('should return an error when "blogAreaSelector" is en empty string', async () => {
     setPluginConfig(TocPlugin, { ...options, blogAreaSelector: '' });
     const validationResult = await validator();
-    expect(validationResult).toHaveLength(1);
+    expect(validationResult.length).toEqual(1);
     expect(validationResult[0]).toEqual(
       'Option "blogAreaSelector" for "toc" must be a valid string (e.g. ".blog-content").',
     );
   });
 
-  test('should return an error when level array length is 0', async () => {
+  it('should return an error when level array length is 0', async () => {
     setPluginConfig(TocPlugin, { ...options, level: [] });
     const validationResult = await validator();
-    expect(validationResult).toHaveLength(1);
+    expect(validationResult.length).toEqual(1);
     expect(validationResult[0]).toEqual(
       `Option "level" for "toc" must be an array containing headings to list (e.g.: "['h2', 'h3']".`,
     );
   });
 });
-*/

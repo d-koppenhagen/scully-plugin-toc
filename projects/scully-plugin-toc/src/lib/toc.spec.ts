@@ -1,9 +1,9 @@
-import { headingLevel, tocPlugin } from '../src/toc';
-import { Level, TocConfig } from '../src/interfaces';
+import { headingLevel, tocPlugin } from './toc';
+import { Level, TocConfig } from './interfaces';
 import { HandledRoute, setPluginConfig } from '@scullyio/scully';
-import { getTocPlugin } from '../src/index';
+import { getTocPlugin } from './index';
 
-xdescribe('headingLevel', () => {
+describe('headingLevel', () => {
   it('should return the heading level number', () => {
     expect(headingLevel('h0')).toBeNull();
     expect(headingLevel('h1')).toBe(1);
