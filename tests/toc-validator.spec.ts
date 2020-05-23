@@ -3,7 +3,7 @@ import { TocConfig } from '../src/interfaces';
 import { getTocPlugin } from '../src/index';
 import { setPluginConfig } from '@scullyio/scully';
 
-describe('validator', () => {
+xdescribe('validator', () => {
   let options: TocConfig;
   let TocPlugin: any;
 

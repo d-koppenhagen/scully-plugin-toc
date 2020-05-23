@@ -3,7 +3,7 @@ import { Level, TocConfig } from '../src/interfaces';
 import { HandledRoute, setPluginConfig } from '@scullyio/scully';
 import { getTocPlugin } from '../src/index';
 
-describe('headingLevel', () => {
+xdescribe('headingLevel', () => {
   test('should return the heading level number', () => {
     expect(headingLevel('h0')).toBeNull();
     expect(headingLevel('h1')).toBe(1);
