@@ -1,0 +1,50 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "scully-plugin-toc": {
+      "projectType": "library",
+      "root": "projects/scully-plugin-toc",
+      "sourceRoot": "projects/scully-plugin-toc/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/scully-plugin-toc/tsconfig.lib.json",
+            "project": "projects/scully-plugin-toc/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/scully-plugin-toc/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/scully-plugin-toc/src/test.ts",
+            "tsConfig": "projects/scully-plugin-toc/tsconfig.spec.json",
+            "karmaConfig": "projects/scully-plugin-toc/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/scully-plugin-toc/tsconfig.lib.json",
+              "projects/scully-plugin-toc/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    }},
+  "cli": {
+    "analytics": "7e156ccc-192b-4fc7-816c-a5e4d7e3d910"
+  },
+  "defaultProject": "scully-plugin-toc"
+}

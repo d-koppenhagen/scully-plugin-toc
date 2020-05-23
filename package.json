@@ -1,6 +1,6 @@
 {
   "name": "scully-plugin-toc",
-  "version": "0.0.1",
+  "version": "1.0.0-beta.4",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -9,10 +9,12 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "format": "prettier --write \"{src,projects}/**/*.ts\"",
-    "prepublishOnly": "npm run build",
     "prebuild": "npm run format && npm run lint && echo Using TypeScript && tsc --version",
-    "postbuild": "copyfiles CHANGELOG.md README.md LICENSE dist/scully-plugin-toc",
-    "release": "standard-version && npm run build"
+    "postbuild": "npm run copy && npm run addVersion",
+    "copy": "copyfiles CHANGELOG.md README.md LICENSE dist/scully-plugin-toc",
+    "addVersion": "cd dist/scully-plugin-toc && npm version -allow-same-version \"$(node -e \"console.log(require('../../package.json').version)\")\"",
+    "release": "standard-version && npm run build",
+    "release:beta": "standard-version --prerelease && npm run build"
   },
   "private": true,
   "dependencies": {

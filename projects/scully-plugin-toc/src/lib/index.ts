@@ -4,8 +4,8 @@ import {
   yellow,
   log,
   registerPlugin,
+  getPluginConfig,
 } from '@scullyio/scully';
-import { getPluginConfig } from '@scullyio/scully/lib/pluginManagement/pluginConfig';
 import { JSDOM } from 'jsdom';
 
 declare var require: any;

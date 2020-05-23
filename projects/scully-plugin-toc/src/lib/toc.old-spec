@@ -4,7 +4,7 @@ import { HandledRoute, setPluginConfig } from '@scullyio/scully';
 import { getTocPlugin } from '../src/index';
 
 xdescribe('headingLevel', () => {
-  test('should return the heading level number', () => {
+  it('should return the heading level number', () => {
     expect(headingLevel('h0')).toBeNull();
     expect(headingLevel('h1')).toBe(1);
     expect(headingLevel('h2')).toBe(2);
@@ -81,14 +81,14 @@ describe('tocPlugin', () => {
     };
     TocPlugin = getTocPlugin();
   });
-  test('should return the HTML including TOC by respecting the configured options', async () => {
+  it('should return the HTML including TOC by respecting the configured options', async () => {
     const html = await tocPlugin(defaultValidHtml, defaultRouteDataConfig);
     expect(html).toEqual(
       `${resultStart}<div id="toc"><ul><li><a href="/foo/bar#h2-1">H2-1</a></li><ul style="margin-bottom: 0px"><li><a href="/foo/bar#h3-1">H3-1</a></li></ul><li><a href="/foo/bar#h2-2">H2-2</a></li></ul></div>${resultEnd}`,
     );
   });
 
-  test('should return the HTML including TOC by using default "blogAreaSelector"', async () => {
+  it('should return the HTML including TOC by using default "blogAreaSelector"', async () => {
     const options = { ...tocConfig };
     options.blogAreaSelector = '';
     options.level = ['h1', 'h2', 'h3'];
@@ -99,7 +99,7 @@ describe('tocPlugin', () => {
     );
   });
 
-  test('should return the HTML including TOC by specify level option', async () => {
+  it('should return the HTML including TOC by specify level option', async () => {
     const options = { ...tocConfig };
     options.level = ['h4', 'h5', 'h6', 'invalid' as Level];
     setPluginConfig(TocPlugin, options);
@@ -109,7 +109,7 @@ describe('tocPlugin', () => {
     );
   });
 
-  test('should insert TOC into element with id "toc" by default', async () => {
+  it('should insert TOC into element with id "toc" by default', async () => {
     const options = { ...tocConfig };
     options.insertSelector = '';
     setPluginConfig(TocPlugin, options);
@@ -119,7 +119,7 @@ describe('tocPlugin', () => {
     );
   });
 
-  test('should insert TOC into specific element', async () => {
+  it('should insert TOC into specific element', async () => {
     const options = { ...tocConfig };
     options.insertSelector = '.foo';
     const inputHtml = defaultValidHtml.replace('id="toc"', 'class="foo"');

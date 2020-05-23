@@ -2,24 +2,28 @@
   "compileOnSave": false,
   "compilerOptions": {
     "baseUrl": "./",
+    "outDir": "./dist/out-tsc",
     "sourceMap": true,
+    "declaration": false,
     "downlevelIteration": true,
     "experimentalDecorators": true,
     "module": "esnext",
-    "importHelpers": true,
-    "typeRoots": ["node_modules/@types"],
-    "paths": {
-      "scully-plugin-toc": ["dist/index"]
-    },
-    "outDir": "./dist",
-    "target": "es2015",
-    "declaration": true,
-    "inlineSources": true,
-    "allowSyntheticDefaultImports": true,
     "moduleResolution": "node",
-    "types": [],
-    "lib": ["dom", "es5", "es2015.promise", "es2018"]
+    "importHelpers": true,
+    "target": "es2015",
+    "lib": [
+      "es2018",
+      "dom"
+    ],
+    "paths": {
+      "scully-plugin-toc": [
+        "dist/scully-plugin-toc/scully-plugin-toc",
+        "dist/scully-plugin-toc"
+      ]
+    }
   },
-  "include": ["src/**/*"],
-  "exclude": ["node_modules", "**/*.spec.ts"]
+  "angularCompilerOptions": {
+    "fullTemplateTypeCheck": true,
+    "strictInjectionParameters": true
+  }
 }

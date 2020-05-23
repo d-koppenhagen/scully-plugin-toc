@@ -1,0 +1,36 @@
+{
+  "name": "scully-plugin-toc",
+  "description": "this plugin for scully provides a postRenderer to generate a table of contents for the rendered route content",
+  "license": "MIT",
+  "repository": "https://github.com/d-koppenhagen/scully-plugin-toc",
+  "author": "Danny Koppenhagen <mail@d-koppenhagen.de> (https://d-koppenhagen.de)",
+  "homepage": "https://github.com/d-koppenhagen/scully-plugin-toc",
+  "keywords": [
+    "scully",
+    "toc",
+    "postRenderer",
+    "angular",
+    "ssr",
+    "ssg",
+    "JAMStack"
+  ],
+  "bugs": {
+    "url": "https://github.com/d-koppenhagen/scully-plugin-toc/issues",
+    "email": "mail@d-koppenhagen.de"
+  },
+  "scripts": {
+    "release": "standard-version"
+  },
+  "peerDependencies": {
+    "@angular/common": "^9.0.0",
+    "@angular/core": "^9.0.0",
+    "@scullyio/scully": "^0.0.92"
+  },
+  "dependencies": {
+    "jsdom": "^16.2.2",
+    "tslib": "^1.10.0"
+  },
+  "devDependencies": {
+    "@types/jsdom": "^16.2.3"
+  }
+}
