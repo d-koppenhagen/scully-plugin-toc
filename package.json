@@ -14,7 +14,8 @@
     "copy": "copyfiles CHANGELOG.md README.md LICENSE dist/scully-plugin-toc",
     "addVersion": "cd dist/scully-plugin-toc && npm version -allow-same-version \"$(node -e \"console.log(require('../../package.json').version)\")\"",
     "release": "standard-version && npm run build",
-    "release:beta": "standard-version --prerelease && npm run build"
+    "release:beta": "standard-version --prerelease && npm run build",
+    "publish": "cd dist/scully-plugin-toc && npm publish"
   },
   "private": true,
   "dependencies": {
