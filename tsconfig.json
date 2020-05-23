@@ -8,14 +8,17 @@
     "module": "esnext",
     "importHelpers": true,
     "typeRoots": ["node_modules/@types"],
-    "target": "es2015",
+    "paths": {
+      "scully-plugin-toc": ["dist/index"]
+    },
     "outDir": "./dist",
+    "target": "es2015",
     "declaration": true,
     "inlineSources": true,
     "allowSyntheticDefaultImports": true,
     "moduleResolution": "node",
     "types": [],
-    "lib": ["dom", "es2018"]
+    "lib": ["dom", "es5", "es2015.promise", "es2018"]
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules", "**/*.spec.ts"]

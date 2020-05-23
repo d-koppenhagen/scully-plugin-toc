@@ -8,6 +8,8 @@ import {
 import { getPluginConfig } from '@scullyio/scully/lib/pluginManagement/pluginConfig';
 import { JSDOM } from 'jsdom';
 
+declare var require: any;
+
 export const TocPlugin = 'toc';
 
 export type Level = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';

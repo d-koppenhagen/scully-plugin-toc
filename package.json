@@ -22,8 +22,8 @@
   "files": [
     "dist"
   ],
-  "main": "dist/index",
-  "types": "dist/index",
+  "main": "dist/public_api",
+  "types": "dist/public_api",
   "scripts": {
     "clean": "rimraf dist && rimraf coverage",
     "format": "prettier --write \"{src,tests}/**/*.ts\"",
@@ -40,7 +40,8 @@
   "dependencies": {
     "@scullyio/scully": "^0.0.92",
     "http-proxy-middleware": "^1.0.3",
-    "jsdom": "^16.2.2"
+    "jsdom": "^16.2.2",
+    "tslib": "^1.13.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^8.3.5",
