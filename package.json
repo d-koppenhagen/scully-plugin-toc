@@ -1,72 +1,68 @@
 {
   "name": "scully-plugin-toc",
-  "version": "1.0.0-beta.4",
-  "description": "this plugin for scully provides a postRenderer to generate a table of contents for the rendered route content",
-  "license": "MIT",
-  "repository": "https://github.com/d-koppenhagen/scully-plugin-toc",
-  "author": "Danny Koppenhagen <mail@d-koppenhagen.de> (https://d-koppenhagen.de)",
-  "homepage": "https://github.com/d-koppenhagen/scully-plugin-toc",
-  "keywords": [
-    "scully",
-    "toc",
-    "postRenderer",
-    "angular",
-    "ssr",
-    "ssg",
-    "JAMStack"
-  ],
-  "bugs": {
-    "url": "https://github.com/d-koppenhagen/scully-plugin-toc/issues",
-    "email": "mail@d-koppenhagen.de"
-  },
-  "files": [
-    "dist"
-  ],
-  "main": "dist/public_api",
-  "types": "dist/public_api",
+  "version": "0.0.1",
   "scripts": {
-    "clean": "rimraf dist && rimraf coverage",
-    "format": "prettier --write \"{src,tests}/**/*.ts\"",
-    "lint": "tslint --force --format verbose \"src/**/*.ts\"",
+    "ng": "ng",
+    "start": "ng serve",
+    "build": "ng build scully-plugin-toc --prod",
+    "test": "ng test",
+    "lint": "ng lint",
+    "e2e": "ng e2e",
+    "format": "prettier --write \"{src,projects}/**/*.ts\"",
     "prepublishOnly": "npm run build",
-    "prebuild": "npm run clean && npm run format && npm run lint && echo Using TypeScript && tsc --version",
-    "build": "tsc --pretty",
-    "build:watch": "npm run build -- --watch",
-    "test": "jest",
-    "test:watch": "jest --watch",
-    "coverage": "jest --coverage",
-    "release": "standard-version"
+    "prebuild": "npm run format && npm run lint && echo Using TypeScript && tsc --version",
+    "postbuild": "copyfiles CHANGELOG.md README.md LICENSE dist/scully-plugin-toc",
+    "release": "standard-version && npm run build"
   },
+  "private": true,
   "dependencies": {
+    "@angular/animations": "~9.1.9",
+    "@angular/common": "~9.1.9",
+    "@angular/compiler": "~9.1.9",
+    "@angular/core": "~9.1.9",
+    "@angular/forms": "~9.1.9",
+    "@angular/platform-browser": "~9.1.9",
+    "@angular/platform-browser-dynamic": "~9.1.9",
+    "@angular/router": "~9.1.9",
     "@scullyio/scully": "^0.0.92",
-    "http-proxy-middleware": "^1.0.3",
     "jsdom": "^16.2.2",
-    "tslib": "^1.13.0"
+    "rxjs": "~6.5.4",
+    "tslib": "^1.10.0",
+    "zone.js": "~0.10.2"
   },
   "devDependencies": {
+    "@angular-devkit/build-angular": "^0.901.7",
+    "@angular-devkit/build-ng-packagr": "^0.901.7",
+    "@angular/cli": "^9.1.7",
+    "@angular/compiler-cli": "^9.1.9",
+    "@angular/language-service": "^9.1.9",
     "@commitlint/cli": "^8.3.5",
     "@commitlint/config-conventional": "^8.3.4",
-    "@types/jest": "^25.2.2",
-    "@types/node": "^14.0.1",
+    "@types/jasmine": "~3.5.0",
+    "@types/jasminewd2": "~2.0.3",
+    "@types/node": "^12.11.1",
+    "codelyzer": "^5.1.2",
     "commitizen": "^4.1.2",
-    "coveralls": "^3.1.0",
+    "copyfiles": "^2.2.0",
     "cz-conventional-changelog": "^3.2.0",
     "husky": "^4.2.5",
-    "jest": "^26.0.1",
+    "jasmine-core": "~3.5.0",
+    "jasmine-spec-reporter": "~4.2.1",
+    "karma": "~5.0.0",
+    "karma-chrome-launcher": "~3.1.0",
+    "karma-coverage-istanbul-reporter": "~2.1.0",
+    "karma-jasmine": "~3.0.1",
+    "karma-jasmine-html-reporter": "^1.4.2",
+    "ng-packagr": "^9.1.5",
     "prettier": "^2.0.5",
+    "protractor": "~7.0.0",
+    "replace": "^1.2.0",
     "rimraf": "^3.0.2",
     "standard-version": "^8.0.0",
-    "ts-jest": "^25.5.1",
-    "ts-node": "^8.10.1",
-    "tslint": "^6.1.2",
+    "ts-node": "~8.3.0",
+    "tslint": "~6.1.0",
     "tslint-config-prettier": "^1.18.0",
-    "typescript": "^3.9.2"
-  },
-  "engines": {
-    "node": ">=10.0.0"
-  },
-  "jest": {
-    "preset": "ts-jest"
+    "typescript": "~3.8.3"
   },
   "husky": {
     "hooks": {
