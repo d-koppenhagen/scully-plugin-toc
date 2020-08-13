@@ -9,7 +9,7 @@ export type ConfigureFn = (testBed: typeof TestBed) => void;
 
 export const configureTests = (
   configure: ConfigureFn,
-  compilerOptions: CompilerOptions = {}
+  compilerOptions: CompilerOptions = {},
 ) => {
   const compilerConfig: CompilerOptions = {
     preserveWhitespaces: false,

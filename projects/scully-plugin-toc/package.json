@@ -24,7 +24,7 @@
   "peerDependencies": {
     "@angular/common": "^9.0.0",
     "@angular/core": "^9.0.0",
-    "@scullyio/scully": "^0.0.92"
+    "@scullyio/scully": "0.0.92"
   },
   "dependencies": {
     "jsdom": "^16.2.2",
