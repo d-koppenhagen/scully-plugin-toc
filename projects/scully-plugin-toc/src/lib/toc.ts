@@ -1,13 +1,13 @@
 import {
+  getPluginConfig,
   HandledRoute,
+  log,
   logWarn,
   yellow,
-  log,
-  getPluginConfig,
 } from '@scullyio/scully';
 import { JSDOM } from 'jsdom';
-import { TocConfig, Level } from './interfaces';
 import { TocPluginName } from './constants';
+import { Level, TocConfig } from './interfaces';
 
 export const headingLevel = (tag: string): number | null => {
   const match = tag.match(/(?!h)[123456]/g);
@@ -82,7 +82,8 @@ export const tocPlugin = async (html: string, routeData: HandledRoute) => {
     let toc = '';
     headers.forEach((c: any) => {
       const level = headingLevel(c.tagName);
-      const baseLiEl = `<li><a href="${route}#${c.id}">${c.textContent}</a></li>`;
+      const trailingSlash = c.trailingSlash ? '/' : '';
+      const baseLiEl = `<li><a href="${route}${trailingSlash}#${c.id}">${c.textContent}</a></li>`;
       if (previousTag && level && level > previousTag) {
         toc += '<ul style="margin-bottom: 0px">';
       }

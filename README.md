@@ -33,9 +33,10 @@ import { ScullyConfig, setPluginConfig } from '@scullyio/scully';
 import { getTocPlugin, TocConfig } = from './scully-plugins/toc';
 
 const tocOptions: TocConfig = {
-  blogAreaSelector: '.blog-content',
-  insertSelector: '#toc',
-  level: ['h2', 'h3'],
+  blogAreaSelector: '.blog-content', // where to search for TOC headings
+  insertSelector: '#toc',            // where to insert the TOC
+  level: ['h2', 'h3'],               // what heading levels to include
+  trailingSlash: true,               // add trailing slash before the anker ('#')
 };
 const TocPlugin = getTocPlugin();
 setPluginConfig(TocPlugin, tocOptions);
@@ -89,3 +90,4 @@ The following table will explain the options in detail.
   In fact to insert the TOC in a blog post, you should at least add a `<div id="toc"></div>` in your blog post and this is the place where the TOC will be inserted.
 - `level`: This option defines the heading levels to include in the TOC. By default the value `level: ['h2', 'h3']` is used.
   Only valid HTML headings are supported (`h1`, `h2`, `h3`, `h4`, `h5` and `h6`).
+- `trailingSlash` define weather a trailing slash will be added to the generated link just before the anker reference or not. Set this to `true` will lead into generated links like this: `.../foo/#myTocLink`. If it's `false` (default), the generated link will look like this: `.../foo#myTocLink`.
