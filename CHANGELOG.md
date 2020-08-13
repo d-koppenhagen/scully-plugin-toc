@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.2.0](https://github.com/d-koppenhagen/scully-plugin-toc/compare/v1.1.0...v1.2.0) (2020-08-13)
+
+
+### Features
+
+* add trailingSlash flag ([85ec94d](https://github.com/d-koppenhagen/scully-plugin-toc/commit/85ec94d22d8306ba5ed7621b47b1e7e09dd8be7a)), closes [#5](https://github.com/d-koppenhagen/scully-plugin-toc/issues/5)
+
 ## [1.1.0](https://github.com/d-koppenhagen/scully-plugin-toc/compare/v1.1.0-0...v1.1.0) (2020-05-23)
 
 ## [1.1.0-0](https://github.com/d-koppenhagen/scully-plugin-toc/compare/v1.0.0...v1.1.0-0) (2020-05-23)
