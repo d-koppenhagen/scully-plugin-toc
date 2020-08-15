@@ -2,7 +2,13 @@
   "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
   "dest": "../../dist/scully-plugin-toc",
   "lib": {
-    "entryFile": "src/public-api.ts"
+    "entryFile": "src/public-api.ts",
+    "umdModuleIds": {
+      "jsdom": "jsdom",
+      "@scullyio/scully": "@scullyio/scully"
+    }
   },
-  "whitelistedNonPeerDependencies": ["jsdom"]
+  "whitelistedNonPeerDependencies": [
+    "jsdom"
+  ]
 }

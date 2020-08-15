@@ -17,5 +17,6 @@
     "statusBar.foreground": "#15202b"
   },
   "peacock.color": "#bec865",
-  "editor.formatOnSave": true
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode"
 }

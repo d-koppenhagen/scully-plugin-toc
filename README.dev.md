@@ -4,7 +4,7 @@
 npm i
 cd projects/scully-plugin-toc
 npm i
-cd ../
+cd ../../
 npm run release # it will run `npm run build` beofre
 npm run publish # bulish the new version on npm
 ```
