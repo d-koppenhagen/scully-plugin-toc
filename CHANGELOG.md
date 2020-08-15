@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.3.0](https://github.com/d-koppenhagen/scully-plugin-toc/compare/v1.2.0...v1.3.0) (2020-08-15)
+
+
+### Features
+
+* update workspace and support angular 10 ([b51d828](https://github.com/d-koppenhagen/scully-plugin-toc/commit/b51d828b064057db823e24c685baed66de950729))
+
+
+### Bug Fixes
+
+* do not only search in direct childrens for `blogAreaSelector` ([a231bc0](https://github.com/d-koppenhagen/scully-plugin-toc/commit/a231bc03b6ff62a8e67d85e0b3496087d1ec3dd9))
+* use correct tocOption value ([81fc817](https://github.com/d-koppenhagen/scully-plugin-toc/commit/81fc81782af3b7dfcf571eac535644840a7f1694)), closes [#5](https://github.com/d-koppenhagen/scully-plugin-toc/issues/5)
+
 ### [1.2.1](https://github.com/d-koppenhagen/scully-plugin-toc/compare/v1.2.0...v1.2.1) (2020-08-13)
 
 ## [1.2.0](https://github.com/d-koppenhagen/scully-plugin-toc/compare/v1.1.0...v1.2.0) (2020-08-13)
