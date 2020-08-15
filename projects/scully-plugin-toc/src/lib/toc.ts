@@ -67,7 +67,7 @@ export const tocPlugin = async (html: string, routeData: HandledRoute) => {
         );
       } else {
         selector += tocConfig.blogAreaSelector
-          ? `${tocConfig.blogAreaSelector}>${lowerCased},`
+          ? `${tocConfig.blogAreaSelector} ${lowerCased},`
           : `${lowerCased},`;
       }
     });
