@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.4.0](https://github.com/d-koppenhagen/scully-plugin-toc/compare/v1.3.0...v1.4.0) (2020-09-07)
+
+
+### Features
+
+* add config param that add an onclick event ([f865d84](https://github.com/d-koppenhagen/scully-plugin-toc/commit/f865d848e530caad1d56a21af9e354053c8ec1bf))
+
 ## [1.3.0](https://github.com/d-koppenhagen/scully-plugin-toc/compare/v1.2.0...v1.3.0) (2020-08-15)
 
 
