@@ -79,6 +79,7 @@ describe('tocPlugin', () => {
       insertSelector: '#toc',
       level: ['h2', 'h3'],
       trailingSlash: false,
+      scrollIntoViewOnClick: false,
     };
     TocPlugin = getTocPlugin();
   });
@@ -95,6 +96,18 @@ describe('tocPlugin', () => {
     setPluginConfig(TocPlugin, options);
     const html = await tocPlugin(defaultValidHtml, defaultRouteDataConfig);
     expect(html).toMatch(/\/foo\/bar\/\#h/);
+  });
+
+  it('should include a "onclick" event that reacts and scrolls the target into view', async () => {
+    const options = { ...tocConfig };
+    options.scrollIntoViewOnClick = true;
+    setPluginConfig(TocPlugin, options);
+    const html = await tocPlugin(defaultValidHtml, defaultRouteDataConfig);
+    expect(
+      html.match(
+        /onclick="document.getElementById\(\'h\d-\d\'\).scrollIntoView\(\)"/g,
+      ).length,
+    ).toEqual(3);
   });
 
   it('should return the HTML including TOC by using default "blogAreaSelector"', async () => {

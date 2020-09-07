@@ -5,4 +5,5 @@ export interface TocConfig {
   blogAreaSelector?: string;
   insertSelector?: string;
   level?: Level[];
+  scrollIntoViewOnClick?: boolean;
 }
