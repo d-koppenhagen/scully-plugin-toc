@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.4.1](https://github.com/d-koppenhagen/scully-plugin-toc/compare/v1.4.0...v1.4.1) (2020-09-08)
+
+
+### Bug Fixes
+
+* register onclick event on <li> ([c802063](https://github.com/d-koppenhagen/scully-plugin-toc/commit/c802063e1b59d161d38962cf70404b7deb48cd4e))
+
 ## [1.4.0](https://github.com/d-koppenhagen/scully-plugin-toc/compare/v1.3.0...v1.4.0) (2020-09-07)
 
 
