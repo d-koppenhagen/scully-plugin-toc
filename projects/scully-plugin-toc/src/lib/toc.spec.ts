@@ -105,7 +105,7 @@ describe('tocPlugin', () => {
     const html = await tocPlugin(defaultValidHtml, defaultRouteDataConfig);
     expect(
       html.match(
-        /onclick="document.getElementById\(\'h\d-\d\'\).scrollIntoView\(\)"/g,
+        /onclick="document.getElementById\(\'h\d-\d\'\).scrollIntoView\(\);"/g,
       ).length,
     ).toEqual(3);
   });

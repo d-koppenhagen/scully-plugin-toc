@@ -84,9 +84,9 @@ export const tocPlugin = async (html: string, routeData: HandledRoute) => {
       const level = headingLevel(c.tagName);
       const trailingSlash = tocConfig.trailingSlash ? '/' : '';
       const onClickScrollIntoViewString = tocConfig.scrollIntoViewOnClick
-        ? ` onclick="document.getElementById('${c.id}').scrollIntoView()"`
+        ? ` onclick="document.getElementById('${c.id}').scrollIntoView();"`
         : '';
-      const baseLiEl = `<li><a href="${route}${trailingSlash}#${c.id}"${onClickScrollIntoViewString}>${c.textContent}</a></li>`;
+      const baseLiEl = `<li${onClickScrollIntoViewString}><a href="${route}${trailingSlash}#${c.id}">${c.textContent}</a></li>`;
       if (previousTag && level && level > previousTag) {
         toc += '<ul style="margin-bottom: 0px">';
       }
