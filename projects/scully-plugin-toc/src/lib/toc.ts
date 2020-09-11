@@ -38,7 +38,7 @@ export const tocPlugin = async (html: string, routeData: HandledRoute) => {
     const insertPoint = window.document.querySelector(tocInsertPointSelector);
     // in case <div id="toc"></div> is not on the site
     if (!insertPoint) {
-      logWarn(
+      log(
         `Insert point with selector ${tocInsertPointSelector} not found. Skipping toc generation for route ${route}.`,
       );
       return html;
@@ -111,7 +111,6 @@ export const tocPlugin = async (html: string, routeData: HandledRoute) => {
   } catch (e) {
     logWarn(`error in tocPlugin, didn't parse for route '${yellow(route)}'`);
   }
-  log('Finished sitemap generation by scully-plugin-toc');
   // in case of failure return unchanged HTML to keep flow going
   return Promise.resolve(html);
 };
