@@ -7,6 +7,8 @@
   "homepage": "https://github.com/d-koppenhagen/scully-plugin-toc",
   "keywords": [
     "scully",
+    "scully-plugin",
+    "scully-plugin-registry",
     "toc",
     "postRenderer",
     "angular",
