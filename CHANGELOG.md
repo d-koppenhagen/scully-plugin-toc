@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0](https://github.com/d-koppenhagen/scully-plugin-toc/compare/v1.4.2...v2.0.0) (2020-11-12)
+
+
+### ⚠ BREAKING CHANGES
+
+* Drop support for Angular 9
+
+### Features
+
+* update to peerDependencies to support Angular 11 ([55a478f](https://github.com/d-koppenhagen/scully-plugin-toc/commit/55a478f24fc1a429ed219f966ed4968cef0513b3))
+
 ### [1.4.2](https://github.com/d-koppenhagen/scully-plugin-toc/compare/v1.4.1...v1.4.2) (2020-09-12)
 
 ### [1.4.1](https://github.com/d-koppenhagen/scully-plugin-toc/compare/v1.4.0...v1.4.1) (2020-09-08)
