@@ -24,15 +24,15 @@
     "release": "standard-version"
   },
   "peerDependencies": {
-    "@angular/common": "^9.0.0 || ^10.0.0",
-    "@angular/core": "^9.0.0 || ^10.0.0",
-    "@scullyio/scully": "1.0.0-beta.2"
+    "@angular/common": "^10.0.0 || ^11.0.0 || ^12.0.0-0",
+    "@angular/core": "^10.0.0 || ^11.0.0 || ^12.0.0-0",
+    "@scullyio/scully": "^1.0.0"
   },
   "dependencies": {
     "jsdom": "^16.4.0",
-    "tslib": "^2.0.1"
+    "tslib": "^2.0.3"
   },
   "devDependencies": {
-    "@types/jsdom": "^16.2.3"
+    "@types/jsdom": "^16.2.5"
   }
 }
