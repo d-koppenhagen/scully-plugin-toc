@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.0.0](https://github.com/d-koppenhagen/scully-plugin-toc/compare/v2.0.0...v3.0.0) (2021-05-18)
+
+
+### ⚠ BREAKING CHANGES
+
+* drop support for angular 10 and earlier
+
+* drop angular 10 support for next version ([5314065](https://github.com/d-koppenhagen/scully-plugin-toc/commit/53140650c809fa5b29123e3beaa07bb9ee623bd5))
+
 ## [2.0.0](https://github.com/d-koppenhagen/scully-plugin-toc/compare/v1.4.2...v2.0.0) (2020-11-12)
 
 
